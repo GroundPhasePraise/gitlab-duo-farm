@@ -11,6 +11,9 @@ Flow per account:
 Memory: gh_bad.json (unverified-email etc), gitlab_accounts.json (done=ready).
 Usage: python gl_oauth_chrome.py [target_valid_pats] [start_index]
 """
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import os
 import sys

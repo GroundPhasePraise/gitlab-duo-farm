@@ -1,6 +1,9 @@
 """trial_activate.py — fill /-/trials/new (group, company, country dropdown), Activate my trial,
 watch for arkose/IDV/activation. If Ultimate activates: probe duo_chat, create PAT properly,
 save PAT + session to pool files for the gateway."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import random
 import string

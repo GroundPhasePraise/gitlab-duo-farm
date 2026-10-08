@@ -2,6 +2,9 @@
 Hypothesis: recaptcha Enterprise auto-passes a trusted click from Triolan residential IP + aged
 Chrome profile. Flow: card mode -> enlarge zuora iframe -> fill card -> locate nested recaptcha
 anchor iframe -> trusted mouse click checkbox -> pass/challenge -> trusted click #submitButton."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import random
 import sys

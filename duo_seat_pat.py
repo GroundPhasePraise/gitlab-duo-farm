@@ -1,5 +1,8 @@
 """duo_seat_pat.py — assign a Duo seat to the user in the trial group, verify /-/duo_chat,
 then create a PAT via DOM-aware flow. Saves everything for the gateway."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import re
 import sys

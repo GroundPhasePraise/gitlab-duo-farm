@@ -1,5 +1,8 @@
 """restore_profile_h4.py — inject the VALID tnh4h77n5 session (tn_session_h4.json) into the aged profile.
 No login form => no email-code gate => bypasses GitLab code throttling."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import sys
 from pathlib import Path

@@ -1,6 +1,9 @@
 """card_verify.py — complete GitLab Duo identity verification via CREDIT CARD (Zuora $0 auth,
 no AVS). Fills Zuora iframe (holder/PAN/CVV/exp), clicks 'Verify credit card', detects result,
 loops cards until verified. On success: re-test Duo, create PAT, save session+PAT to pool."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import random
 import sys

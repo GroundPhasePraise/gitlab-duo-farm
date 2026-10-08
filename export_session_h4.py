@@ -1,4 +1,7 @@
 """export_session_h4.py — export fresh tnh4h77n5 _gitlab_session cookie from aged profile to tn_session.json."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import sys
 from pathlib import Path

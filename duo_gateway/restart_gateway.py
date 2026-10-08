@@ -2,6 +2,9 @@
 
 Usage: python restart_gateway.py
 """
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import os, subprocess, sys, time, json
 
 VENV_PY = sys.executable

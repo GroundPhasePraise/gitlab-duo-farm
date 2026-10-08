@@ -1,3 +1,5 @@
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
 import os
 """login_code.py — rebuild aged-profile session for tnh4h77n5 after cookie wipe.
 GitLab now gates login with an email verification code (new device). Flow:

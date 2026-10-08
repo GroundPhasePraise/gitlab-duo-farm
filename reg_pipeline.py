@@ -5,6 +5,9 @@
   4. trial_activate.py     (/-/trials/new, no captcha)                    -> Ultimate + Duo Agent Platform 30d
 Result: account ready for card_verify4.py (Duo IDV via Zuora card).
 Usage: reg_pipeline.py"""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import subprocess
 from pathlib import Path

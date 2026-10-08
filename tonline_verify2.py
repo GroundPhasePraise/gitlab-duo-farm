@@ -2,6 +2,9 @@
 login -> snapshot UIDs of SUBJECT="Confirm your email address" -> click Send a new code ->
 poll for NEW uid (subject-scoped, no spam fetches) -> clean-extract code -> fill -> verify ->
 probes + PAT + session cookie."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import imaplib
 import json
 import re

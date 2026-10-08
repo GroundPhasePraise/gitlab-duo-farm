@@ -1,6 +1,9 @@
 """wizard_complete.py — complete GitLab onboarding welcome wizard with REAL interactions:
 fill text inputs, select every required dropdown (first viable option), Continue through steps
 until out of /users/sign_up/welcome. Then create PAT + probe duo/trial + save session."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import json
 import random
 import string

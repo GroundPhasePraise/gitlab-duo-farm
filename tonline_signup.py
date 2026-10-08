@@ -2,6 +2,9 @@
 is blocked by GitLab since ~Sep 21). Firefox/Juggler on machine IP.
 Flow: signup -> (IDV? email code/link via t-online IMAP) -> landing check -> phone step? ->
 if usable: trial -> PAT -> save. Also records _gitlab_session cookie for the gateway pool."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import imaplib
 import json
 import random

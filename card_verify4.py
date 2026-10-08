@@ -2,6 +2,9 @@
 Flow per card: IDV card mode -> enlarge zuora iframe -> fill card -> trusted click checkbox ->
 image challenge appears -> per-tile screenshots -> qwen3-vl-flash classifies -> click matching
 tiles -> VERIFY (loop rounds) -> token issued natively -> trusted click #submitButton -> verdict."""
+if __name__ != "__main__" and not __import__("os").environ.get("GLAR_ALLOW_IMPORT"):
+    raise ImportError(f"{__name__}: script-only module — run it directly (python {__file__})")
+
 import base64
 import json
 import random
