@@ -1,0 +1,2 @@
+# put t-online.de mailboxes here, one per line:
+# email:password

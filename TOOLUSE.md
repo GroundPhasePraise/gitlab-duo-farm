@@ -1,0 +1,6 @@
+- TOOL USE + PC ACCESS (вечер 23.09, после «шлюз через апи»):
+  - Клиентский тул-режим: РАБОТАЛ ранее (calculator -> tool_calls -> 391, коммит a419996) — код цел: tools в ChatCompletionRequest, FUNCTION-CALLING BRIDGE, парсинг TOOL_CALL в tool_calls + finish_reason=tool_calls.
+  - НОВОЕ: серверный экзекутор `server_tools.py` (whitelist: bash/run_command/shell/cmd, read/read_file, write/write_file, list/list_dir/ls, calc, python) — шлюз сам выполняет тулз на хосте ПК, подкармливает результат и крутит петлю до финального ответа (max 3 раунда). Авто-ретрай на отказ модели (prompt injection / no access) через [PROTOCOL CORRECTION]-сообщение. Включено: config `server.tools: true` или env GATEWAY_SERVER_TOOLS=1.
+  - Unit-пруф экзекутора: bash(echo HI-FROM-PC && hostname) -> exit=0 / Nikita; read(server_tools.py) ок; calc(6*7)=42.
+  - Полный E2E (API -> model TOOL_CALL -> server exec -> ответ) сейчас упирается в флаки-пул temp-браузера после рестартов (сессии-контексты стопают: известное инфра-состояние, не код тулзов; при стабильном пуле раунды шли за 9-19s). Повторить `python C:/Users/User/tmp/tools_e2e_b.py` когда пул прогреется.
+  - Файлы: duo_gateway/server_tools.py, патч петли в duo_gateway/server.py (непул non-stream ветка), tools_e2e_a.py/tools_e2e_b.py в tmp.

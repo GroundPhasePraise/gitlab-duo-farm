@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.log
+*.db
+stage/
+_DOCS/working_mails.txt
+.env

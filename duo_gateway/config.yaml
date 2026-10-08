@@ -1,0 +1,127 @@
+# GitLab Duo Chat → OpenAI API Proxy — config (gitlab-autoreg deployment)
+# Model refs VERIFIED LIVE 2026-09-22 via aiChatAvailableModels on card-verified account
+# (57 models: glar_stage/duo_models.json). Refs are snake_case ids, NOT provider/model.
+
+server:
+  host: "127.0.0.1"
+  port: 8088
+  debug: false
+  tools: true       # gateway executes whitelisted tools (bash/read/write/...) on this PC
+
+gitlab:
+  base_url: "https://gitlab.com"
+  auth_type: "cookie"
+  auth_value: ""            # optional single-account fallback; pool is primary
+  graphql_endpoint: "/api/graphql"
+  timeout: 120
+  default_model: "astra-6"
+  admin_pat: ""
+  duo_namespace_gid: "gid://gitlab/Group/144232371"
+
+pool:
+  enabled: true
+  strategy: "round_robin"
+  cooldown_seconds: 60
+  max_failures: 3
+  retry_count: 3
+  invalid_on_auth_error: true
+  webui_token: "CHANGE_ME"
+
+smtp:
+  host: ""
+  port: 465
+  user: ""
+  password: ""
+  sender: ""
+  timeout: 15
+
+# OpenAI-style name -> real GitLab Duo model ref (verified live)
+models:
+  # === flagships (Vlad's targets) ===
+  astra-6:
+    id: "gpt_6_astra"
+    provider: "openai"
+  fable-5.1:
+    id: "claude_fable_5_1"
+    provider: "anthropic"
+  # === OpenAI ===
+  gpt-6-astra:
+    id: "gpt_6_astra"
+    provider: "openai"
+  gpt-5.6-sol:
+    id: "gpt_5_6_sol"
+    provider: "openai"
+  gpt-5.6-terra:
+    id: "gpt_5_6_terra"
+    provider: "openai"
+  gpt-5.6-luna:
+    id: "gpt_5_6_luna"
+    provider: "openai"
+  gpt-5.5:
+    id: "gpt_5_5"
+    provider: "openai"
+  gpt-5.4:
+    id: "gpt_5_4"
+    provider: "openai"
+  gpt-5.4-mini:
+    id: "gpt_5_4_mini"
+    provider: "openai"
+  gpt-5.3-codex:
+    id: "gpt_5_3_codex"
+    provider: "openai"
+  gpt-5.2:
+    id: "gpt_5_2"
+    provider: "openai"
+  gpt-5-mini:
+    id: "gpt_5_mini"
+    provider: "openai"
+  # === Anthropic ===
+  claude-opus-5.5:
+    id: "claude_opus_5_5"
+    provider: "anthropic"
+  claude-opus-5:
+    id: "claude_opus_5"
+    provider: "anthropic"
+  claude-opus-4.8:
+    id: "claude_opus_4_8"
+    provider: "anthropic"
+  claude-opus-4.7:
+    id: "claude_opus_4_7"
+    provider: "anthropic"
+  claude-opus-4.6:
+    id: "claude_opus_4_6_20260205"
+    provider: "anthropic"
+  claude-fable-5:
+    id: "claude_fable_5"
+    provider: "anthropic"
+  claude-sonnet-5:
+    id: "claude_sonnet_5"
+    provider: "anthropic"
+  claude-sonnet-4.6:
+    id: "claude_sonnet_4_6"
+    provider: "anthropic"
+  claude-sonnet-4.5:
+    id: "claude_sonnet_4_5_20250929"
+    provider: "anthropic"
+  claude-haiku-4.5:
+    id: "claude_haiku_4_5_20251001"
+    provider: "anthropic"
+  # === others ===
+  kimi-k3:
+    id: "kimi_k3_fireworks"
+    provider: "fireworks"
+  glm-5.3:
+    id: "glm_5_3_fireworks"
+    provider: "fireworks"
+  minimax-m3:
+    id: "minimax_m3_fireworks"
+    provider: "fireworks"
+  gemini-3.8-flash:
+    id: "gemini_3_8_flash_vertex"
+    provider: "vertex"
+  gemini-3.7-flash:
+    id: "gemini_3_7_flash_vertex"
+    provider: "vertex"
+  duo-default:
+    id: "__default__duo_agent_platform_agentic_chat"
+    provider: "gitlab"
